@@ -1,0 +1,38 @@
+root { 
+    display: block;
+}
+
+body {
+    
+    background-color: #333333;
+    
+}
+
+div#login {
+    
+    position: absolute;
+    left: 39%;
+    top: 20%;
+    border: black  solid 1px;
+    background: #DCDCDC;
+    width: 215px;
+    
+    padding-left: 10px;
+    
+}
+
+input#in {
+    
+    width: 180px;
+    height: 40px;
+    font-size: 17px;
+    padding-left: 2px;
+    
+}
+
+input#botaoLogin {
+    
+    
+    
+}
+
