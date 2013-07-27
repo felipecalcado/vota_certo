@@ -2,10 +2,8 @@
 
     require_once('caminhos.php');
     require_once(SMARTY . 'libs/Smarty.class.php');
+    require_once(XAJAX_CORE . 'xajax.inc.php');
     
-    $smarty = new Smarty();
+    require_once(CONTROLLER . 'login.php');
     
-    $smarty->display(VIEW . 'login.tpl');
-    
-
 ?>

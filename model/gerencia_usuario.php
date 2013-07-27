@@ -1,27 +1,47 @@
 <?php
 
-    class Usuario {
+        $xajax->register(XAJAX_FUNCTION, 'login');
         
-        public static function login($usuario, $senha) {
+        $xajax->processRequest();
+    
+        function login2(){
+            
+            $objResponse = new xajaxResponse();
+            
+            $objResponse->call('alert','ola');
+            
+            return $objResponse;
+            
+        }
+        
+       
+    
+        function login($usuario,$senha) {
+                
+            $objResponse = new xajaxResponse();
             
             try {
                
                 $pdo = Banco::connect('vota_certo');
-                throw new PDOException;
+               
                 
-                $sql = $pdo->query("select * from usuarios where login = '{$usuario}' and senha = '{$senha}'");
+                $sql = $pdo->query("select * from usuarios where usuario = '{$usuario}' and senha = '{$senha}'");
 
                 $aResultado = $sql->fetch();
 
                 if( !empty($aResultado) ) {
-
-                    return true;
+                    
+                    $objResponse->call('alert','Usuário valido.');
+                    
 
                 } else {
-
-                    return false;
+                    
+                    $objResponse->call('alert','Usuário não cadastrado.');
+                    
 
                 }
+                
+                return $objResponse;
 
             } catch (PDOException $e) {
                 
@@ -31,7 +51,7 @@
             
         }
         
-        public static function insereUsu($usuario, $senha) {
+        function insereUsu($usuario, $senha) {
             try {
                  
                 $pdo = Banco::connect('vota_certo');
@@ -60,7 +80,7 @@
             
         }
             
-    }
+    
         
     
 ?>
