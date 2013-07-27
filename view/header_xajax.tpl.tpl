@@ -1,5 +1,0 @@
-<?php 
-
-    $xajax->printJavascript();
-
-?>
