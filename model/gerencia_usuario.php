@@ -1,10 +1,11 @@
 <?php
 
 $xajax->register(XAJAX_FUNCTION, 'login');
+$xajax->register(XAJAX_FUNCTION, 'insereUsu');
 
 $xajax->processRequest();
 
-function login($usuario, $senha) {
+function login( $usuario, $senha) {
 
     $objResponse = new xajaxResponse();
 
@@ -24,7 +25,8 @@ function login($usuario, $senha) {
         } else {
 
             $objResponse->call('alert','Usuário não cadastrado.');
-
+            $objResponse->script("document.getElementById('usuario').focus()");
+            
         }
 
         return $objResponse;
@@ -37,32 +39,29 @@ function login($usuario, $senha) {
 
 }
 
-function insereUsu($usuario, $senha) {
+function insereUsu($aForm) {
+    
+    $objResponse = new xajaxResponse();
+    
+    extract($aForm);
+    
     try {
 
         $pdo = Banco::connect('vota_certo');
 
-        $sql = $pdo->query("select * from usuarios where login = '{$usuario}' or senha = '{$senha}'");
-
-        $aResultado = $sql->fetch();
-
-        if( !empty($aResultado) ) {
-
-            $pdo->query("insert into usuarios(login, senha) values ('{$usuario}','{$senha}')");
-            throw new PDOException;
-            echo "<script>alert('Usuario cadastrado')</script>";
-
-        } else {
-
-            return false;
-
-        }
+        $pdo->query("insert into usuarios(usuario, senha) values ('{$usuario}','{$senha}')");
+        
+        $objResponse->alert('Usuário Cadastrado!!!');
+        $objResponse->redirect('principal.php');
 
     } catch (PDOException $e) {
 
-        echo $e;
-
+        $objResponse->alert('Erro no cadastro do usuário');
+        
     }
+    
+    return $objResponse;
+            
 
 }
             

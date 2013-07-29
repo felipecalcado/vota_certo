@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2013-07-27 10:53:38
+<?php /* Smarty version Smarty-3.1.12, created on 2013-07-29 03:12:09
          compiled from "C:\xampp\htdocs\vota_certo\view\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:397851f192b5b97919-52012867%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1286a5d7c0e7b3efdab5d4266337278abe4878ad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\vota_certo\\view\\login.tpl',
-      1 => 1374915198,
+      1 => 1375035490,
       2 => 'file',
     ),
   ),
@@ -28,6 +28,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" type="text/css" href="css/login.css">
         <?php echo $_smarty_tpl->tpl_vars['xajax']->value->printJavascript();?>
 
+        <script type="text/javascript" src="js/teste.js"></script>
         <title>Vota Certo</title>
     </head>
     <body>
@@ -38,11 +39,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <input id="usuario" type="text" name="usuario" value="Usuario" onblur="if(value=='') value = 'Usuario'"  onfocus="if(value=='Usuario') value = ''" size="20"><br><br>
                     <input id="senha" type="text" name="senha" value="Senha" onfocus="if(value=='Senha') value = ''; type='password'; color=black" size="20" autocomplete="off"><br>
                     <button onclick="xajax_login(document.getElementById('usuario').value,document.getElementById('senha').value)">Login</button>
-                    <a id="cadastrese" href="controller/cadastroCallView.php">Cadastre-se</a>
+                    <a id="cadastrese" href="controller/cadastro.php">Cadastre-se</a>
                 
             </div>
         </div>
     </body>
 
 </html>
+
+
 <?php }} ?>
