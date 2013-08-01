@@ -7,8 +7,7 @@
             try {
                 
                return new PDO("mysql:host=localhost;dbname={$nomeBase}","{$usu}","{$pass}");
-               throw new PDOException;
-                
+               
             } catch (PDOException $pdoErro) {
                 
                 echo $pdoErro;

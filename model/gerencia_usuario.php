@@ -9,33 +9,25 @@ function login( $usuario, $senha) {
 
     $objResponse = new xajaxResponse();
 
-    try {
+    $pdo = Banco::connect('vota_certo');
+    
+    $sql = $pdo->query("select * from usuarios where usuario = '{$usuario}' and senha = '{$senha}'");
 
-        $pdo = Banco::connect('vota_certo');
-        
-        $sql = $pdo->query("select * from usuarios where usuario = '{$usuario}' and senha = '{$senha}'");
+    $aResultado = $sql->fetch();
 
-        $aResultado = $sql->fetch();
+    if( !empty($aResultado) ) {
 
-        if( !empty($aResultado) ) {
+        $objResponse->alert('Login efetuado com sucesso!!!.');
+        $objResponse->redirect('controller/principal.php');
 
-            $objResponse->alert('Login efetuado com sucesso!!!.');
-            $objResponse->redirect('controller/principal.php');
+    } else {
 
-        } else {
-
-            $objResponse->call('alert','Usuário não cadastrado.');
-            $objResponse->script("document.getElementById('usuario').focus()");
-            
-        }
-
-        return $objResponse;
-
-    } catch (PDOException $e) {
-
-        echo $e;
+        $objResponse->call('alert','Usuário não cadastrado.');
+        $objResponse->script("document.getElementById('usuario').focus()");
 
     }
+
+    return $objResponse;
 
 }
 
