@@ -5,12 +5,14 @@ $xajax->register(XAJAX_FUNCTION, 'insereUsu');
 
 $xajax->processRequest();
 
-function login( $usuario, $senha) {
+function login($aForm) {
+    
+    extract($aForm);
+    
+    global $pdo;
 
     $objResponse = new xajaxResponse();
 
-    $pdo = Banco::connect('vota_certo');
-    
     $sql = $pdo->query("select * from usuarios where usuario = '{$usuario}' and senha = '{$senha}'");
 
     $aResultado = $sql->fetch();
@@ -18,11 +20,11 @@ function login( $usuario, $senha) {
     if( !empty($aResultado) ) {
 
         $objResponse->alert('Login efetuado com sucesso!!!.');
-        $objResponse->redirect('controller/principal.php');
+        $objResponse->redirect('index.php?pagina=principal.php');
 
     } else {
 
-        $objResponse->call('alert','Usuário não cadastrado.');
+        $objResponse->alert('Usuário não cadastrado.');
         $objResponse->script("document.getElementById('usuario').focus()");
 
     }

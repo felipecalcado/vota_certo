@@ -1,8 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="/vota_certo/css/cadastro.css">
-        {$XAJAX->printJavascript()}
-        <title>COG System Cadastro</title>
+     {$XAJAX_JAVASCRIPT}        
     </head>
     <body>
         <div id="cadastro">

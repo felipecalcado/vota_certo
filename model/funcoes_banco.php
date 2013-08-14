@@ -1,5 +1,9 @@
 <?php
 
+    global $pdo;
+    
+    $pdo = Banco::connect('vota_certo');
+
     //Classe que contém as funções básicas do banco de dados.
     class Banco {
         
@@ -16,6 +20,5 @@
         }
         
     }
-
-
+    
 ?>
