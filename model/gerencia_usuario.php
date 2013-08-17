@@ -7,10 +7,10 @@ $xajax->processRequest();
 
 function login($aForm) {
     
+    global $pdo;
+    
     extract($aForm);
     
-    global $pdo;
-
     $objResponse = new xajaxResponse();
 
     $sql = $pdo->query("select * from usuarios where usuario = '{$usuario}' and senha = '{$senha}'");
@@ -35,18 +35,18 @@ function login($aForm) {
 
 function insereUsu($aForm) {
     
+    global $pdo;
+    
     $objResponse = new xajaxResponse();
     
     extract($aForm);
     
     try {
 
-        $pdo = Banco::connect('vota_certo');
-
         $pdo->query("insert into usuarios(usuario, senha) values ('{$usuario}','{$senha}')");
         
         $objResponse->alert('Usuário Cadastrado!!!');
-        $objResponse->redirect('principal.php');
+        $objResponse->redirect('index.php?pagina=principal.php');
 
     } catch (PDOException $e) {
 

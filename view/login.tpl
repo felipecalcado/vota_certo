@@ -1,8 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/login.css">
-        {$XAJAX_JAVASCRIPT}
-        <script type="text/javascript" src="js/teste.js"></script>
+        {$XAJAX->printJavascript()}
         <title>Vota Certo</title>
     </head>
     <body>
