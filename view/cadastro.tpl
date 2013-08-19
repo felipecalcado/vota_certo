@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="/vota_certo/css/cadastro.css">
-        {$XAJAX->printJavascript()} 
+        {include file="header_padrao.tpl"}
     </head>
     <body>
         <div id="cadastro">

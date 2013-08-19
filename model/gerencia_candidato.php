@@ -1,47 +1,66 @@
 <?php
 
-    class GerenciaCandidato extends Banco {
-        
-        
+$xajax->register(XAJAX_FUNCTION, 'insereCandidato');
 
-    /**
-     * Insere um registro
-     * 
-     * @param type $nome
-     * @param type $partido
-     * @param type $cargo
-     * @param type $historico
-     * @param type $cidade
-     */
-    public static function insereCanditato($nome, $partido, $cargo, $historico, $cidade) {
+/**
+ * Insere um registro
+ * 
+ * @param type $nome
+ * @param type $partido
+ * @param type $cargo
+ * @param type $historico
+ * @param type $cidade
+ */
+function insereCandidato($form) {
+    
+    try {
         
-        try {
-            $pdo = new PDO("mysql:host=localhost;dbname={$nomeBanco}", 'root','');
-            
-            $nome = $_POST['nome'];
-            $partido = $_POST['partido'];
-            $cargo = $_POST['cargo'];
-            $historico = $_POST['historico'];
-            $cidade = $_POST['cidade'];
+        global $pdo;
+        
+        if(!is_object($pdo))
+            throw new Exception ('$pdo não foi instanciado', 0);
+        
+        $objResp = new xajaxResponse();
+        
+        extract($form);
 
-            if(!$nome || !$historico){
-                    echo ("<script>alert('Voce nao entrou com nome ou histórico.\nTente novamente.')</script>");
-                    $smarty->display(VIEW . 'login.tpl');
-            }
+        //if (!$nome || !$historico) {
+        //    echo ("<script>alert('Voce nao entrou com nome ou histórico.\nTente novamente.')</script>");
+        //    $smarty->display(VIEW . 'login.tpl');
+        //}
 
-            //Testar try catch.
-            $sql = $pdo->query("insert into candidatos values (".$nome.",".$partido.",".$cargo.",".$historico.",".$cidade.")");
+        $sql = "insert into candidatos(nome,partido,cargo,cidade,historico) values ('{$nome}','{$partido}','{$cargo}','{$cidade}','{$historico}')";
+        
+        $pdo->query($sql);
+        
+        $objResp->alert('Candidato inserido com sucesso');
+        $objResp->script("window.location.reload();");
+        
+        return $objResp;
 
-            if(!$sql) {
-                echo ("<script>alert('A informação não pôde ser inserida...')</script>");
-                $smarty->display(VIEW . 'login.tpl');
-            }
-        } catch (PDOException $e) {
-            echo $e;
-        }
-        
-        
-        
+    } catch (Exception $e) {
+        GerenciaErro::trataErro($e);
     }
-    }
+}
+
+/**
+ *  Busca todos os registros da tabela passada por param.
+ * 
+ * @param type $nomeTabela
+ * @return type
+ */
+function selectAll($nomeTabela) {
+
+    global $pdo;
+
+    $sql = "select * from {$nomeTabela}";
+
+    $resultado = $pdo->query($sql);
+
+    return $resultado->fetchAll();
+    
+}
+
+$xajax->processRequest();
+
 ?>

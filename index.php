@@ -1,6 +1,8 @@
 <?php
+
     // inclue todas as pastas que serao comuns a todas as outras.
     require_once('constantes.php');
+    require_once(MODEL . 'gerencia_erro.php');
     require_once(SMARTY . 'Smarty.class.php');
     require_once(XAJAX_CORE . 'xajax.inc.php');
     
@@ -11,15 +13,16 @@
         // inicia as variáveis globais que vao ser usadas em todas as paginas.
         global $smarty, $xajax;
 
-        // inicializa $smarty
+        // Smarty
         $smarty = new Smarty();
+        $smarty->addTemplateDir('view/include/');
 
-        // inicializa e configura $xajax.
+        // Xajax
         $xajax = new xajax();
         $xajax->configure('javascript URI', 'xajax');
 
         $smarty->assign('XAJAX', $xajax);
-
+        
         $requisicao = @$_GET['pagina'];
         
         // chama a pagina que é chamada via $_get. Se é a primeira requisicao, loga.    
@@ -33,7 +36,7 @@
         
     } catch (Exception $e) {
         
-        echo $e->getMessage();
+        GerenciaErro::trataErro($e);
         
     }
         

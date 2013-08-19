@@ -1,0 +1,8 @@
+<!-- Javascript -->
+{$XAJAX->printJavascript()}
+
+<!-- CSS -->
+        
+        
+        
+        

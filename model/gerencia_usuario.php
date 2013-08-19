@@ -12,15 +12,19 @@ function login($aForm) {
     extract($aForm);
     
     $objResponse = new xajaxResponse();
-
+    
     $sql = $pdo->query("select * from usuarios where usuario = '{$usuario}' and senha = '{$senha}'");
 
-    $aResultado = $sql->fetch();
+    $usuario = $sql->fetch();
+    
+    if( !empty($usuario) ) {
+        
+        if ($usuario['admin']) {
+            $objResponse->script("document.getElementById('teste').style.visibility = visible;");
+        }
 
-    if( !empty($aResultado) ) {
-
-        $objResponse->alert('Login efetuado com sucesso!!!.');
-        $objResponse->redirect('index.php?pagina=principal.php');
+        $objResponse->alert('Login efetuado com sucesso!!!');
+        $objResponse->redirect('?pagina=principal.php');
 
     } else {
 
@@ -46,7 +50,7 @@ function insereUsu($aForm) {
         $pdo->query("insert into usuarios(usuario, senha) values ('{$usuario}','{$senha}')");
         
         $objResponse->alert('Usuário Cadastrado!!!');
-        $objResponse->redirect('index.php?pagina=principal.php');
+        $objResponse->redirect('?pagina=principal.php');
 
     } catch (PDOException $e) {
 
@@ -56,7 +60,12 @@ function insereUsu($aForm) {
     
     return $objResponse;
             
+}
 
+function verificaAdmin() {
+    
+    return true;
+    
 }
             
 ?>
