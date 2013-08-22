@@ -9,7 +9,7 @@
                     Partido <input id="partido" type="text" name="partido" ><br>
                     Cargo <input id="cargo" type="text" name="cargo" ><br>
                     Cidade <input id="cidade" type="text" name="cidade" ><br>
-                    Historico <input id="historico" type="" name="historico" ><br>
+                    Historico <input id="historico" type="text" name="historico" ><br>
                     <button onclick="xajax_insereCandidato(xajax.getFormValues('formCadastro'))">Cadastre</button>
              </form>
         </div>

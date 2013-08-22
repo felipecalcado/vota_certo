@@ -1,6 +1,7 @@
 <?php
 
 $xajax->register(XAJAX_FUNCTION, 'insereCandidato');
+$xajax->register(XAJAX_FUNCTION, 'teste');
 
 /**
  * Insere um registro
@@ -43,6 +44,16 @@ function insereCandidato($form) {
     }
 }
 
+function teste(){
+    
+    $objResp = new xajaxResponse();
+    
+    $objResp->alert('teste');
+    
+    return $objResp;
+    
+}
+
 /**
  *  Busca todos os registros da tabela passada por param.
  * 
@@ -58,6 +69,28 @@ function selectAll($nomeTabela) {
     $resultado = $pdo->query($sql);
 
     return $resultado->fetchAll();
+    
+}
+
+function selectCandidato($id) {
+    
+    try {
+        global $pdo;
+        
+        if(!isset($id))
+            throw new Exception('Id não foi passado');
+
+        $sql = "select * from candidatos where id = $id";
+
+        $candidato = $pdo->query($sql);
+
+        return $candidato->fetch();
+        
+    }catch(Exception $e) {
+        
+        GerenciaErro::trataErro($e);
+        
+    }
     
 }
 

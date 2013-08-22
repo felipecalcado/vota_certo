@@ -10,12 +10,17 @@
     
     try {
         
+        // ==========> TESTES <============
+        //echo $_SESSION[]; die();
+        
+        
         // inicia as variáveis globais que vao ser usadas em todas as paginas.
         global $smarty, $xajax;
 
         // Smarty
         $smarty = new Smarty();
         $smarty->addTemplateDir('view/include/');
+        //$smarty->assign('DIR_ABSOLUTO',"{$_SERVER['DOCUMENT_ROOT']}");
 
         // Xajax
         $xajax = new xajax();

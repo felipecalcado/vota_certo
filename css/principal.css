@@ -1,0 +1,17 @@
+root { 
+    display: block;
+}
+
+table#tabela_candidatos {
+    
+    
+    
+}
+
+tr#data:hover {
+    
+    background-color: cadetblue;
+    cursor: default
+    
+}
+
