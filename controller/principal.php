@@ -3,9 +3,9 @@
     require_once(MODEL . 'gerencia_usuario.php');
     require_once(MODEL . 'gerencia_candidato.php');
 
-    $aCandidatos = selectAll('candidatos');
+    $aObjCandidatos = Candidato::selectAll();
     
-    $smarty->assign('A_CANDIDATOS',$aCandidatos);
+    $smarty->assign('A_OBJ_CANDIDATOS',$aObjCandidatos);
     
     $smarty->display(VIEW . 'principal.tpl');
     

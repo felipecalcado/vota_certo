@@ -7,7 +7,7 @@
                 var historico = '';
                 function PopupCandidato(idCandidato){
                     
-                    window.open('?pagina=visualiza_candidato.php&id='+idCandidato,'','width=600,height=500,top=90,left=380');
+                    window.open('?pagina=visualiza_candidato.php&id='+idCandidato,'','width=600,height=400,top=90,left=380');
                     
                 }
             </script>
@@ -17,10 +17,9 @@
     <body>
         <label id='teste' style="visibility: hidden">Bem vindo seu lindo</label>
         <br>
-        <a href="?pagina=cadastro_candidato.php">Cadastre um candidato</a>
         <div>
             <form onsubmit="return false;">
-            <table class="tabela_candidatos" border="1">
+                <table class="tabela_objCandidatos" border="0" style="margin: 0 auto">
                 <tr>
                     <td>
                         Nome
@@ -32,18 +31,18 @@
                         Historico
                     </td>
                 </tr>
-                {foreach from=$A_CANDIDATOS item=objCandidato} 
+                {foreach from=$A_OBJ_CANDIDATOS item=objCandidato} 
                     
-                    <tr id="data" onclick="PopupCandidato({$objCandidato['id']})">
+                    <tr id="data"  onclick="PopupCandidato({$objCandidato->getId()})">
                             <td>
-                                {$objCandidato['nome']}
+                                {$objCandidato->getNome()}
                             </td>
                             <td style="text-align: center">
-                                 {$objCandidato['partido']}
+                                 {$objCandidato->getPartido()}
                             </td>
                             <td>
-                                {if $objCandidato['historico']|count_characters:true <= 300}
-                                    {$objCandidato['historico']} 
+                                {if $objCandidato->getHistorico()|count_characters:true <= 300}
+                                    {$objCandidato->getHistorico()} 
                                 {else}
 
                                     
@@ -56,5 +55,8 @@
             </table>
             </form>
         </div>
+            <div>
+                <a href="?pagina=cadastro_candidato.php">Cadastre um Candidato</a>
+            </div>    
     </body>
 </html>

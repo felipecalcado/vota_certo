@@ -13,7 +13,6 @@
         // ==========> TESTES <============
         //echo $_SESSION[]; die();
         
-        
         // inicia as variáveis globais que vao ser usadas em todas as paginas.
         global $smarty, $xajax;
 

@@ -13,6 +13,10 @@ function login($aForm) {
     
     $objResponse = new xajaxResponse();
     
+//    $senha = sha1($senha);
+//    $objResponse->alert("$senha"); return $objResponse;
+//          
+    
     $sql = $pdo->query("select * from usuarios where usuario = '{$usuario}' and senha = '{$senha}'");
 
     $usuario = $sql->fetch();
@@ -45,7 +49,10 @@ function insereUsu($aForm) {
     
     extract($aForm);
     
-    try {
+    try {       
+        
+//        $senha = sha1($senha);
+        
 
         $pdo->query("insert into usuarios(usuario, senha) values ('{$usuario}','{$senha}')");
         

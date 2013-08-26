@@ -4,9 +4,9 @@
 
     $idCandidato = $_GET['id'];
     
-    $candidato = selectCandidato($idCandidato);
+    $objCandidato = Candidato::getCandidatoById($idCandidato);
     
-    $smarty->assign('CANDIDATO',$candidato);
+    $smarty->assign('OBJ_CANDIDATO',$objCandidato);
     
     $smarty->display(VIEW . 'visualiza_candidato.tpl');
     

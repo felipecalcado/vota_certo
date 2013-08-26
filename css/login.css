@@ -2,22 +2,27 @@ root {
     display: block;
 }
 
-body {
+div#login {
     
-    background-color: #333333;
+    margin: 0 auto;
+    margin-top: 250px;
+    border: black  solid 2px;
+    background: #cccccc;
+    padding-left: 10px;
+    width: 200px;
     
 }
 
-div#login {
+a#cadastrese {
     
-    position: absolute;
-    left: 39%;
-    top: 20%;
-    border: black  solid 1px;
-    background: #DCDCDC;
-    width: 215px;
-    padding-left: 10px;
-    
+    padding-left: 30px;
+    color: #333333;
+    text-decoration: none;
+         
+}
+
+a#cadastrese:hover {
+    color: cornflowerblue
 }
 
 input#botaoLogin {
