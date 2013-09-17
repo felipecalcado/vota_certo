@@ -23,10 +23,9 @@ function login($aForm) {
     
     if( !empty($usuario) ) {
         
-        if ($usuario['admin']) {
-            $objResponse->script("document.getElementById('teste').style.visibility = visible;");
-        }
-
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['logado'] = true;
+        
         $objResponse->alert('Login efetuado com sucesso!!!');
         $objResponse->redirect('?pagina=principal.php');
 

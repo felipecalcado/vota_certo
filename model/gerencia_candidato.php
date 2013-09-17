@@ -51,7 +51,6 @@ class Candidato {
         
     }
 
-
     public static function select($id) {
         
         try {
@@ -104,11 +103,20 @@ class Candidato {
     * @param type $nomeTabela
     * @return type
     */
-   public static function selectAll() {
+   public static function selectAll($inicio,$limite,$paramBusca = null) {
 
        global $pdo;
+       
+       $where = '';
+       $limit = '';
+       
+       if($paramBusca)
+           $where = "where nome like '{$paramBusca}%'";
+           
+//       if($inicio && $limite)
+//           $limit = "limit {$inicio},{$limite};";
 
-       $sql = "select * from candidatos";
+       $sql = "select * from candidatos {$where} limit {$inicio},{$limite}";
        
        $resultado = $pdo->query($sql);
        
@@ -125,11 +133,27 @@ class Candidato {
        return $aObjCandidato;
 
    }
+   
+   public static function countAll() {
+       
+       global $pdo;
+       
+       $sql = "select count(*) from candidatos";
+       
+       $resultado = $pdo->query($sql);
+       
+       $resultado = $resultado->fetch();
+       
+       return $resultado[0]; 
+       
+   } 
     
 }
 
 $xajax->register(XAJAX_FUNCTION, 'insereCandidato');
-$xajax->register(XAJAX_FUNCTION, 'teste');
+$xajax->register(XAJAX_FUNCTION, 'busca');
+
+$xajax->processRequest();
 
 /**
  * Insere um registro
@@ -167,17 +191,16 @@ function insereCandidato($form) {
     }
 }
 
-function teste(){
+function busca($form){
     
     $objResp = new xajaxResponse();
     
-    $objResp->alert('teste');
+    extract($form);
+    
+    $objResp->redirect("?pagina=principal.php&busca=$busca");
     
     return $objResp;
     
 }
-
-$xajax->processRequest();
-
 
 ?>

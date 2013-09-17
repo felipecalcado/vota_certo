@@ -13,6 +13,7 @@
                     <button onclick="xajax_insereCandidato(xajax.getFormValues('formCadastro'))">Cadastre</button>
              </form>
         </div>
+        <button onclick="xajax_teste()">teste</button>
     </body>
         
 </html>

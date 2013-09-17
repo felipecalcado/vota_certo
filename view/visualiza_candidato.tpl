@@ -3,7 +3,7 @@
         {include file="header_padrao.tpl"}
     </head>
     <body>
-        <div id="tabela" style="width: 600px">
+        <div id="tabela" style="width: 580px">
             <table border="0">
                 <tr>
                     <td align="center" style="height: 40px; width: 60px">

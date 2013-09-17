@@ -1,30 +1,31 @@
 <html>
     <head>
-        
         {include file="header_padrao.tpl"}
         {literal}
             <script>
-                var historico = '';
-                function PopupCandidato(idCandidato){
+                
+                function PopupCandidato(idCandidato) {
                     
-                    window.open('?pagina=visualiza_candidato.php&id='+idCandidato,'','width=600,height=400,top=90,left=380');
-                    
+                        aPopup[0] = window.open('?pagina=visualiza_candidato.php&id='+idCandidato,'PCandidato','location=no,width=600,height=400,top=90,left=380');
+                         
                 }
+                
             </script>
         {/literal}
-        
     </headh>
     <body>
-        <label id='teste' style="visibility: hidden">Bem vindo seu lindo</label>
+        <form id="formBusca" onsubmit="return false;">
+            <input id="busca" type="text" name="busca">
+            <button id="btBusca" onclick="xajax_busca(xajax.getFormValues('formBusca'))">Buscar</button>
+        </form>
         <br>
         <div>
-            <form onsubmit="return false;">
-                <table class="tabela_objCandidatos" border="0" style="margin: 0 auto">
+            <table class="tabela_candidatos" style="table-layout: fixed; width: 50%;  margin: 0 auto">
                 <tr>
-                    <td>
+                    <td style="width: 150px">
                         Nome
                     </td>
-                    <td>
+                    <td style="width: 60px">
                         Partido
                     </td>
                     <td>
@@ -32,28 +33,24 @@
                     </td>
                 </tr>
                 {foreach from=$A_OBJ_CANDIDATOS item=objCandidato} 
-                    
-                    <tr id="data"  onclick="PopupCandidato({$objCandidato->getId()})">
-                            <td>
-                                {$objCandidato->getNome()}
-                            </td>
-                            <td style="text-align: center">
-                                 {$objCandidato->getPartido()}
-                            </td>
-                            <td>
-                                {if $objCandidato->getHistorico()|count_characters:true <= 300}
-                                    {$objCandidato->getHistorico()} 
-                                {else}
+                    <tr id="data"  ondblclick="PopupCandidato({$objCandidato->getId()})">
+                        <td>
+                            {$objCandidato->getNome()}
+                        </td>
+                        <td>
+                            {$objCandidato->getPartido()}
+                        </td>
+                        <td>
+                            {if $objCandidato->getHistorico()|count_characters:true <= 300}
+                                {$objCandidato->getHistorico()} 
+                            {else}
 
-                                    
-
-                                {/if}
-                            </td>
+                            {/if}
+                        </td>
                     </tr>
-                    
                 {/foreach}
             </table>
-            </form>
+            {$PAGINACAO}
         </div>
             <div>
                 <a href="?pagina=cadastro_candidato.php">Cadastre um Candidato</a>

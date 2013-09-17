@@ -12,6 +12,5 @@
                 <button id="cadastrese" onclick="xajax_insereUsu(xajax.getFormValues('formCadastro'))">Cadastrar</button>
             </form>
         </div>
-        
     </body>
 </html>
