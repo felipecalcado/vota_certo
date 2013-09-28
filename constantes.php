@@ -8,8 +8,9 @@
     define('XAJAX', "{$_SERVER['DOCUMENT_ROOT']}/vota_certo/xajax/");
     define('XAJAX_CORE', "{$_SERVER['DOCUMENT_ROOT']}/vota_certo/xajax/xajax_core/");
     define('XAJAX_JS', "{$_SERVER['DOCUMENT_ROOT']}/vota_certo/xajax/xajax_js/");
+    define('IMAGENS', "{$_SERVER['DOCUMENT_ROOT']}/vota_certo/imagens/");
     
     // Constantes
-    
+    define('QTD_ITEMS_PAGINACAO', 2);
     
 ?>

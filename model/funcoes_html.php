@@ -1,10 +1,16 @@
 <?php
-
-function Paginacao($pagina, $limite, $busca='') {
+/*
+ * Monta paginação
+ * 
+ * Sting $classe        - Define a classe dos items mostrados
+ * int $pagina          - Página corrente
+ * int (const) $limite  - Limite de items mostrados por página
+ * String $busca        - Filtro de busca
+ */
+function Paginacao($classe ,$pagina, $limite, $busca='') {
         
     global $aObjCandidatos;
     
-    // Paginacao
     $limite = 3;
     
     if(!$pagina)
@@ -14,13 +20,13 @@ function Paginacao($pagina, $limite, $busca='') {
     
     if($busca)
         
-        $aObjCandidatos = Candidato::selectAll($inicio,$limite,$busca);
+        $aObjCandidatos = $classe::selectAll($inicio,$limite,$busca);
         
     else 
         
-        $aObjCandidatos = Candidato::selectAll($inicio,$limite);
+        $aObjCandidatos = $classe::selectAll($inicio,$limite);
     
-    $qntResultado = Candidato::countAll();
+    $qntResultado = $classe::countAll();
     
     $totalPaginas = ceil($qntResultado / $limite);
     
@@ -33,6 +39,42 @@ function Paginacao($pagina, $limite, $busca='') {
     }
     
     return $paginacao;
+    
+}
+
+/**
+ * TODO
+ * 
+ * @param String $classe
+ * @param Array $aStyle
+ * @param Array $aEvent
+ * @return string
+ */
+function MontaSelect($classe, $aStyle, $aEvent) {
+    
+    $html = '';
+    
+    $htmlStyle = 'style=';
+    
+    $htmlEvent = '';
+    
+    // TODO: USAR FOR PARA VARRER OS ARRAYS DE STYLE E EVENT PRA TORNAR A FUNÇÃO MAIS FLEXIVEL NA CHAMADA
+    if(!empty($aStyle['width']))
+        $htmlStyle .="'width={$aStyle['width']}";
+        
+    if(!empty($aEvent['onchange']))
+        $htmlEvent .="'onchange={$aEvent['onchange']}";
+        
+    $html .= "<select name=select$classe $htmlStyle $htmlEvent>";
+    
+    $aObj = $classe::selectAll();
+    
+    foreach($aObj as $obj)
+        $html .= "<option>{$obj->getNome()}</option>";
+        
+    $html .= '</select>';
+    
+    return $html;
     
 }
 

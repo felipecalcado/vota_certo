@@ -36,7 +36,6 @@
         
         $requisicao = @$_GET['pagina'];
         
-        // chama a pagina que é chamada via $_get. Se é a primeira requisicao, loga.    
         if ($requisicao == '') 
 
             require_once(CONTROLLER . 'principal.php');

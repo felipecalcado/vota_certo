@@ -103,34 +103,34 @@ class Candidato {
     * @param type $nomeTabela
     * @return type
     */
-   public static function selectAll($inicio,$limite,$paramBusca = null) {
+    public static function selectAll($inicio = null ,$limite = null ,$paramBusca = null) {
 
-       global $pdo;
+        global $pdo;
        
-       $where = '';
-       $limit = '';
-       
-       if($paramBusca)
-           $where = "where nome like '{$paramBusca}%'";
-           
-//       if($inicio && $limite)
-//           $limit = "limit {$inicio},{$limite};";
+        $where = '';
+        $limit = '';
 
-       $sql = "select * from candidatos {$where} limit {$inicio},{$limite}";
-       
-       $resultado = $pdo->query($sql);
-       
-       $aCandidato = $resultado->fetchAll();
-       
-       $aObjCandidato = Array();
-       
-       foreach($aCandidato as $candidato) {
-           
-           $aObjCandidato[] = self::getCandidatoById($candidato['id']);
-       
-       }
-       
-       return $aObjCandidato;
+        if($inicio && $limite) 
+            $limit = "limit {$inicio},{$limite}";
+
+        if($paramBusca)
+            $where = "where nome like '{$paramBusca}%'";
+
+        $sql = "select * from candidatos {$where} {$limit}";
+
+        $resultado = $pdo->query($sql);
+
+        $aCandidato = $resultado->fetchAll();
+
+        $aObjCandidato = Array();
+
+        foreach($aCandidato as $candidato) {
+
+            $aObjCandidato[] = self::getCandidatoById($candidato['id']);
+
+        }
+
+        return $aObjCandidato;
 
    }
    

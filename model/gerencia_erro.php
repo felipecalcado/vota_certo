@@ -8,17 +8,17 @@
             
             // Erro funcional
             if($objErro->getCode() == 1) {
-                
+                // TODO: tratar o erro e responder ao usuario
                 $objResponse->alert("{$objErro->getMessage()}");
             
-                // Erro Tecnico
+            // Erro Tecnico
             } else {
                 
                 $objResponse->call('alert','Erro, desculpe');
                 
+                self::insere($objErro->getMessage(), $objErro->getFile(), $objErro->getLine());
+                
             }
-            
-            self::insere($objErro->getMessage(), $objErro->getFile(), $objErro->getLine());
             
             return $objResponse;
             

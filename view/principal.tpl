@@ -13,13 +13,15 @@
             </script>
         {/literal}
     </headh>
-    <body>
-        <form id="formBusca" onsubmit="return false;">
-            <input id="busca" type="text" name="busca">
-            <button id="btBusca" onclick="xajax_busca(xajax.getFormValues('formBusca'))">Buscar</button>
-        </form>
-        <br>
+    <body style="background-image: url(/vota_certo/imagens/fundo.jpg)">
         <div>
+            <form id="formBusca" onsubmit="return false;">
+                <input id="busca" type="text" name="busca" onkeyup="if(event.keyCode == 13) xajax_busca(xajax.getFormValues('formBusca'))">
+                {$SELECT}
+            </form>
+        </div>
+        <br>
+        <div style="height: 400px; width: 800px; margin: 0 auto;">
             <table class="tabela_candidatos" style="table-layout: fixed; width: 50%;  margin: 0 auto">
                 <tr>
                     <td style="width: 150px">
@@ -50,8 +52,10 @@
                     </tr>
                 {/foreach}
             </table>
-            {$PAGINACAO}
         </div>
+            <div>
+                {$PAGINACAO}
+            </div>
             <div>
                 <a href="?pagina=cadastro_candidato.php">Cadastre um Candidato</a>
             </div>    
