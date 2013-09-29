@@ -1,26 +1,33 @@
 <?php
     
-    require_once(MODEL . 'gerencia_candidato.php');
+    require_once(DIR_MODEL . 'candidato_classe.php');
+    require_once(DIR_MODEL . 'candidato_ajax.php');
     
-    if(@$_SESSION['logado'])
-        $smarty->assign('LOGADO', true);
-    
-    extract($_GET);
+//    if(@$_SESSION['logado'])
+//        $smarty->assign('LOGADO', true);
 
-    echo print_r($_GET);
+    // TODO: Substuir pela atribuição das variáveis
+    extract($_GET);
+    
+    $arMontaPaginacao = MontaPaginacao(@$pag);
+    
+    $inicio = $arMontaPaginacao['inicio'];
+    $limite = $arMontaPaginacao['limite'];
+    $paginacao = $arMontaPaginacao['paginacao'];
+
+    $smarty->assign('PAGINACAO', $paginacao);
     
     if(@$selectCandidato)
         $busca = $selectCandidato;
-        
-    // TODO: TIRAR A BUSCA DA FUNÇÇÃO DE PAGINACAO
-    $paginacao = Paginacao('Candidato',@$pag,QTD_ITEMS_PAGINACAO,@$busca);
-        
-    $smarty->assign('PAGINACAO', $paginacao);
+    
+    $aObjCandidatos = Candidato::selectAll($inicio,$limite,@$busca);
+    
     $smarty->assign('A_OBJ_CANDIDATOS',$aObjCandidatos);
     
     // Teste
     $smarty->assign('SELECT', MontaSelect('Candidato', array('width' => '150px'),array('onchange' => 'formBusca.submit()')));
     
+    // style
     $fundo = IMAGENS . 'fundo.jpeg';
     
     $smarty->assign('FUNDO', $fundo);

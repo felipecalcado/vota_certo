@@ -2,7 +2,7 @@
     
     $_SESSION['logado'] = false;    
 
-    require_once(MODEL . 'gerencia_usuario.php'); 
+    require_once(DIR_MODEL . 'gerencia_usuario.php'); 
     
     $smarty->display(VIEW . 'login.tpl');
     

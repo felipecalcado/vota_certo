@@ -4,13 +4,13 @@
 
     // inclue todas as pastas que serao comuns a todas as outras.
     require_once('constantes.php');
-    require_once(MODEL . 'gerencia_erro.php');
+    require_once(DIR_MODEL . 'gerencia_erro.php');
     require_once(SMARTY . 'Smarty.class.php');
     require_once(XAJAX_CORE . 'xajax.inc.php');
     
     // models
-    require_once(MODEL . 'funcoes_banco.php');
-    require_once(MODEL . 'funcoes_html.php');
+    require_once(DIR_MODEL . 'funcoes_banco.php');
+    require_once(DIR_MODEL . 'funcoes_html.php');
     
     try {
         

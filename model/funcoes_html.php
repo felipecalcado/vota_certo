@@ -1,49 +1,7 @@
 <?php
-/*
- * Monta paginação
- * 
- * Sting $classe        - Define a classe dos items mostrados
- * int $pagina          - Página corrente
- * int (const) $limite  - Limite de items mostrados por página
- * String $busca        - Filtro de busca
- */
-function Paginacao($classe ,$pagina, $limite, $busca='') {
-        
-    global $aObjCandidatos;
-    
-    $limite = 3;
-    
-    if(!$pagina)
-        $pagina = 1;
-    
-    $inicio = ($pagina * $limite) - $limite;
-    
-    if($busca)
-        
-        $aObjCandidatos = $classe::selectAll($inicio,$limite,$busca);
-        
-    else 
-        
-        $aObjCandidatos = $classe::selectAll($inicio,$limite);
-    
-    $qntResultado = $classe::countAll();
-    
-    $totalPaginas = ceil($qntResultado / $limite);
-    
-    $paginacao = '';
-    
-    for($i=1 ; $i <= $totalPaginas ; $i++) {
-        
-        $paginacao .= "<a href='?pag={$i}'>{$i}</a>";
-        
-    }
-    
-    return $paginacao;
-    
-}
 
 /**
- * TODO
+ * Monta select genérico
  * 
  * @param String $classe
  * @param Array $aStyle
@@ -75,6 +33,39 @@ function MontaSelect($classe, $aStyle, $aEvent) {
     $html .= '</select>';
     
     return $html;
+    
+}
+
+function MontaPaginacao($pag, $busca = null) {
+    
+    $aRetorno = Array();
+    
+    $limite = QTD_ITEMS_PAGINACAO;
+    
+    $aRetorno['limite'] = $limite;
+    
+    if(!@$pag)
+        $pag = 1;
+    
+    $inicio = ($pag * $limite) - $limite;
+    
+    $aRetorno['inicio'] = $inicio;
+    
+    $qntResultado = Candidato::countAll(@$busca);
+    
+    $totalPaginas = ceil($qntResultado / $limite);
+    
+    $paginacao = '';
+    
+    for($i=1 ; $i <= $totalPaginas ; $i++) {
+        
+        $paginacao .= "<a href='?pag={$i}'>{$i}</a>";
+        
+    }
+    
+    $aRetorno['paginacao'] = $paginacao;
+    
+    return $aRetorno;
     
 }
 

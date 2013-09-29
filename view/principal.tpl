@@ -14,7 +14,7 @@
         {/literal}
     </headh>
     <body style="background-image: url(/vota_certo/imagens/fundo.jpg)">
-        <div>
+        <div align="center">
             <form id="formBusca" onsubmit="return false;">
                 <input id="busca" type="text" name="busca" onkeyup="if(event.keyCode == 13) xajax_busca(xajax.getFormValues('formBusca'))">
                 {$SELECT}
@@ -53,10 +53,10 @@
                 {/foreach}
             </table>
         </div>
-            <div>
+            <div align="center">
                 {$PAGINACAO}
             </div>
-            <div>
+            <div align="center">
                 <a href="?pagina=cadastro_candidato.php">Cadastre um Candidato</a>
             </div>    
     </body>

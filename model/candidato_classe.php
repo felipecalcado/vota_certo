@@ -109,19 +109,19 @@ class Candidato {
        
         $where = '';
         $limit = '';
-
-        if($inicio && $limite) 
+        
+        if( ($inicio || $inicio == 0) && $limite) 
             $limit = "limit {$inicio},{$limite}";
 
         if($paramBusca)
             $where = "where nome like '{$paramBusca}%'";
 
         $sql = "select * from candidatos {$where} {$limit}";
-
+        
         $resultado = $pdo->query($sql);
 
         $aCandidato = $resultado->fetchAll();
-
+        
         $aObjCandidato = Array();
 
         foreach($aCandidato as $candidato) {
@@ -129,77 +129,31 @@ class Candidato {
             $aObjCandidato[] = self::getCandidatoById($candidato['id']);
 
         }
-
+        
         return $aObjCandidato;
 
    }
    
-   public static function countAll() {
+   public static function countAll($paramBusca = '') {
        
        global $pdo;
        
-       $sql = "select count(*) from candidatos";
+       $where = '';
+       
+       if($paramBusca)
+           $where = "where nome like '$paramBusca%'";
+       
+       $sql = "select count(*) from candidatos $where";
+       
+//       echo $sql;
        
        $resultado = $pdo->query($sql);
        
-       $resultado = $resultado->fetch();
+       $total = $resultado->fetch();
        
-       return $resultado[0]; 
+       return $total[0]; 
        
    } 
-    
-}
-
-$xajax->register(XAJAX_FUNCTION, 'insereCandidato');
-$xajax->register(XAJAX_FUNCTION, 'busca');
-
-$xajax->processRequest();
-
-/**
- * Insere um registro
- * 
- * @param type $nome
- * @param type $partido
- * @param type $cargo
- * @param type $historico
- * @param type $cidade
- */
-function insereCandidato($form) {
-    
-    try {
-        
-        global $pdo;
-        
-        if(!is_object($pdo))
-            throw new Exception ('$pdo não foi instanciado', 0);
-        
-        $objResp = new xajaxResponse();
-        
-        extract($form);
-
-        $sql = "insert into candidatos(nome,partido,cargo,cidade,historico) values ('{$nome}','{$partido}','{$cargo}','{$cidade}','{$historico}')";
-        
-        $pdo->query($sql);
-        
-        $objResp->alert('Candidato inserido com sucesso');
-        $objResp->script("window.location.reload();");
-        
-        return $objResp;
-
-    } catch (Exception $e) {
-        GerenciaErro::trataErro($e);
-    }
-}
-
-function busca($form){
-    
-    $objResp = new xajaxResponse();
-    
-    extract($form);
-    
-    $objResp->redirect("?pagina=principal.php&busca=$busca");
-    
-    return $objResp;
     
 }
 
