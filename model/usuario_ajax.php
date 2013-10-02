@@ -60,7 +60,7 @@ function insereUsu($aForm) {
 
     } catch (PDOException $e) {
 
-        $objResponse->alert('Erro no cadastro do usuário');
+        $objResponse->alert("Erro no cadastro do usuário {$e->getMessage()}");
         
     }
     

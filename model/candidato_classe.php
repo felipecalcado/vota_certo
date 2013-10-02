@@ -4,7 +4,7 @@ class Candidato {
     
     private $id, $nome, $partido, $cargo, $cidade, $historico;
     
-    public function Candidato($id, $nome, $partido, $cargo, $cidade, $historico) {
+    public function __construct($id, $nome, $partido, $cargo, $cidade, $historico) {
         
         $this->id = $id;
         $this->nome = $nome;
@@ -33,6 +33,9 @@ class Candidato {
         
     }
     
+    /*
+     *  TODO: elaborar
+     */
     public function getCidade() {
         
         return $this->cidade;
@@ -51,41 +54,44 @@ class Candidato {
         
     }
 
-    public static function select($id) {
-        
+    public static function select($id, $tabela) {
+
         try {
-            
+
             global $pdo;
 
-            if(!isset($id))
+            if (empty($id))
                 throw new Exception('Id não foi passado');
+            
+            if (empty($tabela))
+                throw new Exception('Tabela não foi passado');
+            
+            $sql = "select * from ". strtolower($tabela) ." where id = $id";
+            
+            $resultado = $pdo->query($sql);
 
-            $sql = "select * from candidatos where id = $id";
+            return $resultado->fetch();
+            
+        } catch (Exception $e) {
 
-            $candidato = $pdo->query($sql);
-            
-            return $candidato->fetch();
-            
-        }catch(Exception $e) {
-            
             GerenciaErro::trataErro($e);
             
         }
-        
     }
+
     
     public static function getCandidatoById($id) {
     
         try {
             
-            $aCandidato = self::select($id);
+            $aCandidato = self::select($id, get_class());
 
             return new Candidato(
                 $id,    
                 $aCandidato['nome'],
                 $aCandidato['partido'],
                 $aCandidato['cargo'],
-                $aCandidato['cidade'],
+                $aCandidato['id_cidade'],
                 $aCandidato['historico']
             );
 
@@ -116,7 +122,7 @@ class Candidato {
         if($paramBusca)
             $where = "where nome like '{$paramBusca}%'";
 
-        $sql = "select * from candidatos {$where} {$limit}";
+        $sql = "select * from candidato {$where} {$limit}";
         
         $resultado = $pdo->query($sql);
 
@@ -143,7 +149,7 @@ class Candidato {
        if($paramBusca)
            $where = "where nome like '$paramBusca%'";
        
-       $sql = "select count(*) from candidatos $where";
+       $sql = "select count(*) from candidato $where";
        
 //       echo $sql;
        

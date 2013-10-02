@@ -1,5 +1,7 @@
 <?php
 
+    
+
     session_start();
 
     // inclue todas as pastas que serao comuns a todas as outras.
@@ -7,6 +9,7 @@
     require_once(DIR_MODEL . 'gerencia_erro.php');
     require_once(SMARTY . 'Smarty.class.php');
     require_once(XAJAX_CORE . 'xajax.inc.php');
+    require_once(DIR_PROPEL . 'Propel.php');
     
     // models
     require_once(DIR_MODEL . 'funcoes_banco.php');
@@ -33,6 +36,9 @@
         $xajax->configure('javascript URI', 'xajax');
 
         $smarty->assign('XAJAX', $xajax);
+        
+        // Propel
+        Propel::init(DIR_PROPEL_PROJETO . 'vota_certo-conf.php'); 
         
         $requisicao = @$_GET['pagina'];
         
