@@ -1,7 +1,5 @@
 <?php
 
-    
-
     session_start();
 
     // inclue todas as pastas que serao comuns a todas as outras.
@@ -38,7 +36,8 @@
         $smarty->assign('XAJAX', $xajax);
         
         // Propel
-        Propel::init(DIR_PROPEL_PROJETO . 'vota_certo-conf.php'); 
+        Propel::init(DIR_PROPEL_PROJETO . 'build/conf/vota_certo-conf.php'); 
+        set_include_path(DIR_PROPEL_PROJETO . "build/classes" . PATH_SEPARATOR . get_include_path());
         
         $requisicao = @$_GET['pagina'];
         

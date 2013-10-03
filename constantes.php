@@ -10,7 +10,7 @@
     define('XAJAX_JS', "{$_SERVER['DOCUMENT_ROOT']}/vota_certo/xajax/xajax_js/");
     define('IMAGENS', "{$_SERVER['DOCUMENT_ROOT']}/vota_certo/imagens/");
     define('DIR_PROPEL' , 'C:/php/propel/runtime/lib/');
-    define('DIR_PROPEL_PROJETO' , "{$_SERVER['DOCUMENT_ROOT']}/vota_certo/propel/build/conf/");
+    define('DIR_PROPEL_PROJETO' , "{$_SERVER['DOCUMENT_ROOT']}/vota_certo/propel/");
     
     // Constantes
     define('QTD_ITEMS_PAGINACAO', 2);

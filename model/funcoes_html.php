@@ -25,7 +25,9 @@ function MontaSelect($classe, $aStyle, $aEvent) {
         
     $html .= "<select name=select$classe $htmlStyle $htmlEvent>";
     
-    $aObj = $classe::selectAll();
+    $classe .= 'Query';
+    
+    $aObj = $classe::create()->find();
     
     foreach($aObj as $obj)
         $html .= "<option>{$obj->getNome()}</option>";
@@ -36,6 +38,13 @@ function MontaSelect($classe, $aStyle, $aEvent) {
     
 }
 
+/**
+ *  Retorna um array com varios 'retornos'
+ * 
+ * @param int $pag
+ * @param type $busca
+ * @return type
+ */
 function MontaPaginacao($pag, $busca = null) {
     
     $aRetorno = Array();
@@ -51,7 +60,17 @@ function MontaPaginacao($pag, $busca = null) {
     
     $aRetorno['inicio'] = $inicio;
     
-    $qntResultado = Candidato::countAll(@$busca);
+    try {
+    
+    $qntResultado = CandidatoQuery::create()
+            ->filterByNome($busca)
+            ->count();
+    
+    } catch (PropelException $e) {
+        
+        echo $e->getMessage();
+        
+    }
     
     $totalPaginas = ceil($qntResultado / $limite);
     

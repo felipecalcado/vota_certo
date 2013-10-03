@@ -12,7 +12,7 @@
  * ORDER BY clause to know whether it needs to apply SQL to make the ORDER BY case-insensitive
  * (i.e. if it's a text column type).
  *
- * @package    propel.generator.vota_certo   #it can be any name.map
+ * @package    propel.generator.vota_certo.map
  */
 class CandidatoTableMap extends TableMap
 {
@@ -20,7 +20,7 @@ class CandidatoTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'vota_certo   #it can be any name.map.CandidatoTableMap';
+    const CLASS_NAME = 'vota_certo.map.CandidatoTableMap';
 
     /**
      * Initialize the table attributes, columns and validators
@@ -35,7 +35,7 @@ class CandidatoTableMap extends TableMap
         $this->setName('candidato');
         $this->setPhpName('Candidato');
         $this->setClassname('Candidato');
-        $this->setPackage('vota_certo   #it can be any name');
+        $this->setPackage('vota_certo');
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);

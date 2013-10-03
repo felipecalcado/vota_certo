@@ -40,7 +40,7 @@
  * @method array findByNome(string $nome) Return Cidade objects filtered by the nome column
  * @method array findByIdEstado(int $id_estado) Return Cidade objects filtered by the id_estado column
  *
- * @package    propel.generator.vota_certo   #it can be any name.om
+ * @package    propel.generator.vota_certo.om
  */
 abstract class BaseCidadeQuery extends ModelCriteria
 {
@@ -54,7 +54,7 @@ abstract class BaseCidadeQuery extends ModelCriteria
     public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
         if (null === $dbName) {
-            $dbName = 'vota_certo   #it can be any name';
+            $dbName = 'vota_certo';
         }
         if (null === $modelName) {
             $modelName = 'Cidade';

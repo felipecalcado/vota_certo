@@ -28,7 +28,7 @@
  * @method array findById(int $id) Return Estado objects filtered by the id column
  * @method array findByNome(string $nome) Return Estado objects filtered by the nome column
  *
- * @package    propel.generator.vota_certo   #it can be any name.om
+ * @package    propel.generator.vota_certo.om
  */
 abstract class BaseEstadoQuery extends ModelCriteria
 {
@@ -42,7 +42,7 @@ abstract class BaseEstadoQuery extends ModelCriteria
     public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
         if (null === $dbName) {
-            $dbName = 'vota_certo   #it can be any name';
+            $dbName = 'vota_certo';
         }
         if (null === $modelName) {
             $modelName = 'Estado';

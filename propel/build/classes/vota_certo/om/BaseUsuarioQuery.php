@@ -40,7 +40,7 @@
  * @method array findByIdCidade(int $id_cidade) Return Usuario objects filtered by the id_cidade column
  * @method array findByAdmin(boolean $admin) Return Usuario objects filtered by the admin column
  *
- * @package    propel.generator.vota_certo   #it can be any name.om
+ * @package    propel.generator.vota_certo.om
  */
 abstract class BaseUsuarioQuery extends ModelCriteria
 {
@@ -54,7 +54,7 @@ abstract class BaseUsuarioQuery extends ModelCriteria
     public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
         if (null === $dbName) {
-            $dbName = 'vota_certo   #it can be any name';
+            $dbName = 'vota_certo';
         }
         if (null === $modelName) {
             $modelName = 'Usuario';

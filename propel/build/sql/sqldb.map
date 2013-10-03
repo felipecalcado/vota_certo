@@ -1,2 +1,2 @@
 # Sqlfile -> Database map
-schema.sql=vota_certo   #it can be any name
+schema.sql=vota_certo

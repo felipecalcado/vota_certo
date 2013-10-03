@@ -32,7 +32,7 @@
  * @method array findByLinha(int $linha) Return Erro objects filtered by the linha column
  * @method array findByMensagem(string $mensagem) Return Erro objects filtered by the mensagem column
  *
- * @package    propel.generator.vota_certo   #it can be any name.om
+ * @package    propel.generator.vota_certo.om
  */
 abstract class BaseErroQuery extends ModelCriteria
 {
@@ -46,7 +46,7 @@ abstract class BaseErroQuery extends ModelCriteria
     public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
         if (null === $dbName) {
-            $dbName = 'vota_certo   #it can be any name';
+            $dbName = 'vota_certo';
         }
         if (null === $modelName) {
             $modelName = 'Erro';

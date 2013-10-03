@@ -6,13 +6,13 @@
  *
  *
  *
- * @package propel.generator.vota_certo   #it can be any name.om
+ * @package propel.generator.vota_certo.om
  */
 abstract class BaseEstadoPeer
 {
 
     /** the default database name for this class */
-    const DATABASE_NAME = 'vota_certo   #it can be any name';
+    const DATABASE_NAME = 'vota_certo';
 
     /** the table name for this class */
     const TABLE_NAME = 'estado';

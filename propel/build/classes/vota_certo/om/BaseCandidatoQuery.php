@@ -44,7 +44,7 @@
  * @method array findByCargo(string $cargo) Return Candidato objects filtered by the cargo column
  * @method array findByHistorico(string $historico) Return Candidato objects filtered by the historico column
  *
- * @package    propel.generator.vota_certo   #it can be any name.om
+ * @package    propel.generator.vota_certo.om
  */
 abstract class BaseCandidatoQuery extends ModelCriteria
 {
@@ -58,7 +58,7 @@ abstract class BaseCandidatoQuery extends ModelCriteria
     public function __construct($dbName = null, $modelName = null, $modelAlias = null)
     {
         if (null === $dbName) {
-            $dbName = 'vota_certo   #it can be any name';
+            $dbName = 'vota_certo';
         }
         if (null === $modelName) {
             $modelName = 'Candidato';

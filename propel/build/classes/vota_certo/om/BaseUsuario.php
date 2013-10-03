@@ -6,7 +6,7 @@
  *
  *
  *
- * @package    propel.generator.vota_certo   #it can be any name.om
+ * @package    propel.generator.vota_certo.om
  */
 abstract class BaseUsuario extends BaseObject implements Persistent
 {
